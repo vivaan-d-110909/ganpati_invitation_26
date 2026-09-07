@@ -530,12 +530,14 @@
 </div>
 
 <div class="petals" id="petals" aria-hidden="true"></div>
-
+<audio id="bgMusic" src="ganpati-song.mp3" preload="auto" loop></audio>
 <script>
   const stage = document.getElementById('stage');
   const sealBtn = document.getElementById('sealBtn');
   const closeBtn = document.getElementById('closeBtn');
   const video = document.getElementById('inviteVideo');
+  const bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.7;
   const petalsWrap = document.getElementById('petals');
   let opened = false;
 
@@ -561,6 +563,9 @@
   function openEnvelope(){
     if(opened) return;
     opened = true;
+    bgMusic.play().catch(() => {
+  // Browser blocked autoplay; music will start on the user's first interaction.
+});
     stage.classList.add('opened');
     document.body.classList.add('opened');
     spawnPetals(26);
